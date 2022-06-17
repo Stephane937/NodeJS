@@ -1,0 +1,48 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<form action="/velos/add" method="post" name="form1">
+	<div class="form-group">
+		<label class="form-label mt-4">Nom station</label>
+		<input type="text" class="form-control" name="station" id="station" value="<%= station %>" placeholder="Nom station">
+	</div>
+	<div class="form-group">
+		<label class="form-label mt-4">Nombre de bornettes libres</label>
+		<input type="text" class="form-control" name="nbreBornettesLibres" value="<%= nbreBornettesLibres %>" placeholder="Nombre bornettes libres">
+	</div>
+	<div class="form-group">
+		<label class="form-label mt-4">Nombre de total vélos disponibles</label>
+		<input type="text" class="form-control" name="velosDispo" value="<%= velosDispo %>" placeholder="Nombre total vélos disponibles">
+	</div>
+	<div class="form-group">
+		<label class="form-label mt-4">Vélos mécaniques disponibles</label>
+		<input type="text" class="form-control" name="veloManuelle" value="<%= veloManuelle %>" placeholder="Vélos mécaniques disponibles">
+	</div>
+	<div class="form-group">
+		<label class="form-label mt-4">Vélos éléctriques disponibles</label>
+		<input type="text" class="form-control" name="veloElectriques" value="<%= veloElectriques %>" placeholder="Vélos éléctriques disponibles">
+	</div>
+	<div class="form-group">
+		<label class="form-label mt-4">Borne de paiement disponible</label>
+		<select class="form-select" name="bornePaiement" value="<%= bornePaiement %>">
+			<option>OUI</option>
+			<option>NON</option>
+		</select>
+	</div>
+	<td><input type="submit" name="Submit" value="Ajouter" /></td>
+</form>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>

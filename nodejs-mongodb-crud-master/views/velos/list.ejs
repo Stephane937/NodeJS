@@ -1,0 +1,53 @@
+<%- include ../layouts/header.ejs %>
+<body>
+<!--   <% if (messages.error) { %>
+<p style="color:red"><%- messages.error %></p>
+<% } %> -->
+<% if (messages.success) { %>
+	<p class="alert alert-success mt-4"><%- messages.success %></p>
+<% } %>
+<br>
+<table class="table">
+	<thead>
+	<tr>
+		<th scope="col">Nom station</th>
+		<th scope="col">Nombre bornettes libres</th>
+		<th scope="col">Nombre total vélos disponibles</th>
+		<th scope="col">Vélos mécaniques disponibles</th>
+		<th scope="col">Vélos éléctriques disponibles</th>
+		<th scope="col">Borne de paiement disponible</th>
+		<th width="200px">Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<% if (data) { %>
+		<% data.forEach(function(velo){ %>
+			<tr>
+
+
+				<td><%= velo.station %></td>
+				<td><%= velo.nbreBornettesLibres %></td>
+				<td><%= velo.velosDispo %></td>
+				<td><%= velo.veloElectriques %></td>
+				<td><%= velo.veloManuelle %></td>
+				<td><%= velo.bornePaiement %></td>
+				<td>
+					<div style="float:left">
+						<form method="get" action="/velos/edit/<%= velo._id %>" style="float:left">
+							<input type="submit" name="edit" value='Modifier' onClick="return confirm('Etes-vous sûr de vouloir modifier?')" />
+							<input type="hidden" name="_method" value="EDIT" />
+						</form>
+						<form method="post" action="/velos/delete/<%= velo._id %>" style="float:right">
+							<input type="submit" name="delete" value='Supprimer' onClick="return confirm('Etes-vous sûr de vouloir supprimer?')" />
+							<input type="hidden" name="_method" value="DELETE" />
+						</form>
+					</div>
+				</td>
+			</tr>
+		<% }) %>
+	<% } %>
+	</tbody>
+</table>
+</body>
+<%- include ../layouts/footer.ejs %>
+</html>
